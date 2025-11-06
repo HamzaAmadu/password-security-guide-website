@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Security Guide</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            background-color: lightgreen;
+            border: 2px solid black;
+            padding: 20px;
+        }
+        
+        .page {
+            display: none;
+            background-color: white;
+            border: 5px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .lock-img {
+            width: 150px;
+            height: auto;
+            margin: 20px 0;
+        }
+        
+        .password-option {
+            background-color: lightgray;
+            border: 2px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .password-option:hover {
+            background-color: lightblue;
+        }
+        
+        .strength-meter {
+            height: 10px;
+            width: 80%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+        
+        .strength-level {
+            height: 100%;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .weak { background-color: red; width: 25%; }
+        .fair { background-color: orange; width: 50%; }
+        .good { background-color: yellow; width: 75%; }
+        .strong { background-color: darkgreen; width: 100%; }
+        
+        .nav-buttons {
+            margin-top: 20px;
+        }
+        
+        button {
+            background-color: lightgreen;
+            border: 2px solid black;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #7cfc00;
+        }
+        
+        ul, ol {
+            text-align: left;
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .tip {
+            background-color: #f0f8ff;
+            border-left: 4px solid lightgreen;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: left;
+        }
+        
+        .selected {
+            border: 3px solid green;
+            background-color: #d0f0d0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Security Guide</h1>
+    
+    <div class="page active" id="page1">
+        <h2>Welcome to Password Security</h2>
+        <p>Learn how to create strong passwords to protect your online accounts.</p>
+        
+        <img class="lock-img" src="openlock.jpg" alt="Unlocked Lock">
+        
+        <p>A strong password is your first line of defense against hackers.</p>
+        
+        <div class="nav-buttons">
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+    
+    <div class="page" id="page2">
+        <h2>Why Password Security Matters</h2>
+        <p>Weak passwords can lead to:</p>
+        <ul>
+            <li>Stolen personal information</li>
+            <li>Financial loss</li>
+            <li>Identity theft</li>
+            <li>Privacy invasion</li>
+        </ul>
+        
+        <img class="lock-img" src="wrong.jpg" alt="Wrong Lock">
+        
+        <div class="tip">
+            <p>Hackers use automated tools to guess weak passwords in seconds so it is important to have a strong password.</p>
+        </div>
+        
+        <div class="nav-buttons">
+            <button onclick="prevPage()">Previous</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+    
+    <div class="page" id="page3">
+        <h2>How to Create Strong Passwords</h2>
+        <p>Follow these tips:</p>
+        <ol>
+            <li>Use at least 12 characters</li>
+            <li>Mix uppercase and lowercase letters</li>
+            <li>Include numbers and symbols</li>
+            <li>Avoid common words or personal information like your name or date of birth</li>
+        </ol>
+        
+        <img class="lock-img" src="openlock.jpg" alt="Unlocked Lock">
+        
+        <div class="nav-buttons">
+            <button onclick="prevPage()">Previous</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+    
+    <div class="page" id="page4">
+        <h2>Test Password Strength</h2>
+        <p>Click on a password to see how secure it is:</p>
+        
+        <div class="password-option" onclick="selectPassword('password')">
+            <strong>Password 1:</strong> password
+        </div>
+        
+        <div class="password-option" onclick="selectPassword('p@ssw@rd123')">
+            <strong>Password 2:</strong> p@ssw@rd123
+        </div>
+        
+        <div class="password-option" onclick="selectPassword('Th!$1s4G00dP@$$W0r6')">
+            <strong>Password 3:</strong> Th!$1s4G00dP@$$W0r6
+        </div>
+        
+        <div class="strength-meter">
+            <div class="strength-level" id="strengthLevel"></div>
+        </div>
+        
+        <p id="passwordFeedback">Click on a password to test its strength</p>
+        
+        <img class="lock-img" id="testLock" src="openlock.jpg" alt="Lock">
+        
+        <div class="nav-buttons">
+            <button onclick="prevPage()">Previous</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+    
+    <div class="page" id="page5">
+        <h2>Password Best Practices</h2>
+        <p>Keep your accounts secure with these habits:</p>
+        <ul>
+            <li>Use different passwords for each account</li>
+            <li>Change passwords regularly</li>
+            <li>Use a password manager</li>
+            <li>Enable two-factor authentication</li>
+        </ul>
+        
+        <img class="lock-img" src="lock.jpg" alt="Locked Lock">
+        
+        <p>You now know how to create and maintain secure passwords! :D </p>
+        
+        <div class="nav-buttons">
+            <button onclick="prevPage()">Previous</button>
+            <button onclick="restart()">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+        
+        function nextPage() {
+            if (currentPage < 5) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+        
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+        
+        function restart() {
+            currentPage = 1;
+            showPage(currentPage);
+        }
+        
+        function selectPassword(password) {
+            const strengthLevel = document.getElementById('strengthLevel');
+            const feedback = document.getElementById('passwordFeedback');
+            const testLock = document.getElementById('testLock');
+            
+            document.querySelectorAll('.password-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            strengthLevel.className = 'strength-level';
+            
+            if (password === 'password') {
+                strengthLevel.classList.add('weak');
+                feedback.textContent = 'Very weak - this is the most common password!';
+                testLock.src = "wrong.jpg";
+            } else if (password === 'p@ssw@rd123') {
+                strengthLevel.classList.add('fair');
+                feedback.textContent = 'Fair - better but still predictable';
+                testLock.src = "wrong.jpg";
+            } else if (password === 'Th!$1s4G00dP@$$W0r6') {
+                strengthLevel.classList.add('strong');
+                feedback.textContent = 'Strong - excellent password!';
+                testLock.src = "lock.jpg";
+            }
+        }
+        
+        showPage(currentPage);
+    </script>
+</body>
+</html>
